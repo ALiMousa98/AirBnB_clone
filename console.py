@@ -12,8 +12,8 @@ class HBNBCommand(cmd.Cmd):
     file = None
 
     def do_quit(self, arg):
-        '''Quit command to exit the program
-        '''
+        """Quit command to exit the program
+        """
         if self.file:
             self.file.close()
             self.file = None
@@ -21,8 +21,8 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_EOF(self, arg):
-        '''Exit command to exit the program
-        '''
+        """Exit command to exit the program
+        """
         
         if self.file:
             self.file.close()
