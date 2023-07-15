@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """ Console Class  """
 import cmd
-import sys
+import re
+import json
 
 
 class HBNBCommand(cmd.Cmd):
