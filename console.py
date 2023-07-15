@@ -5,9 +5,9 @@ import sys
 
 
 class HBNBCommand(cmd.Cmd):
-    """
-    command interpreter
-    """
+    
+    """command interpreter"""
+    
     prompt = '(hbnb) '
     file = None
 
