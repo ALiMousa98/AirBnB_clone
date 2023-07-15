@@ -103,8 +103,6 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     if len(paras) == 2:
                         print("** attribute name missing **")
-                    #elif paras[2] not in storage.all()[key].to_dict().keys():
-                        #print()
                     else:
                         if len(paras) == 3:
                             print("** value missing **")
@@ -113,7 +111,8 @@ class HBNBCommand(cmd.Cmd):
                             for attribute in attributes:
                                 if attribute == paras[2]:
                                     setattr(storage.all()[key], attribute,
-                                            type(storage.all()[key].to_dict()[attribute])(value))
+                                            type(storage.all()[key]
+                                                 .to_dict()[attribute])(value))
                             storage.all()[key].save()
 
 
