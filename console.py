@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """ Console Class  """
 import cmd
+from models.base_model import BaseModel
+from models import storage
 import re
 import json
 
@@ -26,6 +28,64 @@ class HBNBCommand(cmd.Cmd):
             self.file = None
 
         return True
+
+    def do_create(self, line):
+        """This creates an instance.
+        """
+        if line == "" or line is None:
+            print("** class name missing **")
+        elif line not in storage.classes():
+            print("** class doesn't exist **")
+        else:
+            b = storage.classes()[line]()
+            b.save()
+            print(b.id)
+
+    def do_show(self, line):
+        if line == "" or line is None:
+            print("** class name missing **")
+        else:
+            paras = line.split(" ")
+            if paras[0] not in storage.classes():
+                print("** class doesn't exist **")
+            elif len(paras) == 1:
+                print("** instance id missing **")
+            else:
+                key = "{}.{}".format(paras[0], paras[1])
+                if key not in storage.all():
+                    print("** no instance found **")
+                else:
+                    print(storage.all()[key])
+
+    def do_destroy(self, line):
+        if line == "" or line is None:
+            print("** class name missing **")
+        else:
+            paras = line.split(" ")
+            if paras[0] not in storage.classes():
+                print("** class doesn't exist **")
+            elif len(paras) == 1:
+                print("** instance id missing **")
+            else:
+                key = "{}.{}".format(paras[0], paras[1])
+                if key not in storage.all():
+                    print("** no instance found **")
+                else:
+                    del storage.all()[key]
+                    storage.save()
+
+    def do_all(self, line):
+        """This creates an instance.
+        """
+        if line == "" or line is None:
+            new_list = [str(obj) for key, obj in storage.all().items()]
+            print(new_list)
+        elif line not in storage.classes():
+            print("** class doesn't exist **")
+        else:
+            nl = [str(obj) for key, obj in storage.all().items()
+                  if type(obj).__name__ == line]
+            print(nl)
 
 
 """def parse(arg):
