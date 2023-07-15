@@ -4,6 +4,9 @@ import sys
 
 
 class HBNBCommand(cmd.Cmd):
+    """
+    command interpreter
+    """
     prompt = '(hbnb) '
     file = None
 
@@ -16,7 +19,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_EOF(self, arg):
-        '''Quit command to exit the program
+        '''Exit command to exit the program
         '''
         if self.file:
             self.file.close()
