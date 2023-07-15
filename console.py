@@ -87,6 +87,35 @@ class HBNBCommand(cmd.Cmd):
                   if type(obj).__name__ == line]
             print(nl)
 
+    def do_update(self, line):
+        if line == "" or line is None:
+            print("** class name missing **")
+        else:
+            paras = line.split(" ")
+            if paras[0] not in storage.classes():
+                print("** class doesn't exist **")
+            elif len(paras) == 1:
+                print("** instance id missing **")
+            else:
+                key = "{}.{}".format(paras[0], paras[1])
+                if key not in storage.all():
+                    print("** no instance found **")
+                else:
+                    if len(paras) == 2:
+                        print("** attribute name missing **")
+                    #elif paras[2] not in storage.all()[key].to_dict().keys():
+                        #print()
+                    else:
+                        if len(paras) == 3:
+                            print("** value missing **")
+                        else:
+                            attributes = storage.attributes()[paras[0]]
+                            for attribute in attributes:
+                                if attribute == paras[2]:
+                                    setattr(storage.all()[key], attribute,
+                                            type(storage.all()[key].to_dict()[attribute])(value))
+                            storage.all()[key].save()
+
 
 """def parse(arg):
     'Convert a series of zero or more numbers to an argument tuple'
