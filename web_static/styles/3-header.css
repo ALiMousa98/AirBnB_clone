@@ -1,0 +1,17 @@
+header {
+    background-color: #FF0000;
+    height: 70px;
+    width: 100%;
+    border-bottom: 1px solid #CCCCCC;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 100px; /* Set your logo width here */
+    height: 50px; /* Set your logo height here */
+    background-image: url('../images/logo.png'); /* Replace with your logo path */
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-left: 20px;
+}
